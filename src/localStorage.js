@@ -24,7 +24,7 @@ function removeFavorite(element){
     const favorites = getFavoritesFromLocalStorage();
     const oldFavoriteIndex = favorites.findIndex(f=>f.id === element.id);
     if(oldFavoriteIndex !== -1){
-        favorites.splice(oldFavoriteIndex,1)
+        favorites.splice(oldFavoriteIndex,1);
         saveFavoritesToLocalStorage(favorites);
     }
 }
@@ -32,12 +32,15 @@ function removeFavorite(element){
 function toggleFavorite(element){
     const favorites = getFavoritesFromLocalStorage();
     const oldFavoriteIndex = favorites.findIndex(f=>f.id === element.id);
+    let result = false;
     if(oldFavoriteIndex === -1){
         favorites.push(element);
+        result = true;
     }else{
         favorites.splice(oldFavoriteIndex,1)
     }
     saveFavoritesToLocalStorage(favorites);
+    return result;
 }
 
 function isInFavorites(element){

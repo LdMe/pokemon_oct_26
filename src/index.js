@@ -1,3 +1,5 @@
+import { addToFavorites, isInFavorites, toggleFavorite } from "./localStorage.js";
+
 const API_URL = "https://pokeapi.co/api/v2/pokemon/";
 
 async function getPokemons(limit = 10, offset = 0) {
@@ -61,7 +63,24 @@ function createPokemonCard(pokemon) {
     types.textContent = pokemon.types.join(", ");
 
     const favoriteButton = document.createElement("button");
-    favoriteButton.textContent = "Like";
+    const isFavorite = isInFavorites(pokemon);
+    if (isFavorite) {
+        favoriteButton.classList.add("favorite");
+        favoriteButton.textContent = "Unlike";
+    } else {
+        favoriteButton.textContent = "Like";
+    }
+
+    favoriteButton.addEventListener("click", () => {
+        const isFavorite = toggleFavorite(pokemon);
+        if (isFavorite) {
+            favoriteButton.classList.add("favorite");
+            favoriteButton.textContent = "Unlike";
+        } else {
+            favoriteButton.classList.remove("favorite");
+            favoriteButton.textContent = "Like";
+        }
+    })
 
     article.append(image, title, types, favoriteButton);
     return article;
