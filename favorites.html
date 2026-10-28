@@ -15,6 +15,15 @@
             </ul>
         </nav>
     </header>
+    <form id="filter-form">
+        <label for="search">Search</label>
+        <input type="text" name="search" id="search" placeholder="ID or name">
+        <label for="type-select">Type</label>
+        <select name="type" id="type-select">
+            <option value="all">all</option>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
     <section id="favorites-list"></section>
     <script type="module" src="src/favorites.js"></script>
 </body>
