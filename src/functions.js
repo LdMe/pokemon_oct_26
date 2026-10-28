@@ -52,7 +52,11 @@ function createPokemonCard(pokemon,onFavorite=()=>{}) {
     article.dataset.id = pokemon.id;
 
     const title = document.createElement("h3");
-    title.textContent = pokemon.name;
+
+    const numberSpan = document.createElement("span");
+    numberSpan.textContent = `#${pokemon.id}`;
+
+    title.append(numberSpan," ",pokemon.name);
 
     const image = document.createElement("img");
     image.src = pokemon.image;
