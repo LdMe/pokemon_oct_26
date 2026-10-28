@@ -72,6 +72,20 @@ function setSearchForm(){
     })
 }
 
+function controlSearchQuery(){
+    const searchInput = document.getElementById("search-input");
+    const typeSelector = document.getElementById("type-select");
+    let timeout = null;
+    searchInput.addEventListener("input",(e)=>{
+        clearTimeout(timeout);
+        timeout = setTimeout(()=>{
+            const search  = e.target.value;
+            const type = typeSelector.value;
+            loadFavorites(search,type);
+        },500)
+    })
+}
+controlSearchQuery();
 setTypesOptions();
 setSearchForm();
 loadFavorites();
